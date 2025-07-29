@@ -5,6 +5,11 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+env:
+  VALIDATE_ALL_CODEBASE: false
+  VALIDATE_CHECKOV: false
+
+
 jobs:
   commit-readme:
     runs-on: ubuntu-latest
