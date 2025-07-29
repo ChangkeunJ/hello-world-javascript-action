@@ -1,0 +1,26 @@
+name: Daily Commit Test
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  commit-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update README.md with timestamp
+        run: |
+          echo "Last update: $(date -u)" > README.md
+
+      - name: Commit and Push changes
+        run: |
+          git config user.name "ChangkeunJ"
+          git config user.email "reiot92@gmail.com"
+          git add README.md
+          git commit -m "Auto commit on $(date -u)" || echo "No changes to commit"
+          git push
